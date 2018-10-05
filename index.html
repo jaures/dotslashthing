@@ -1,3 +1,36 @@
 <html>
-    <h1> Jaures Says Vim is the Best </h1>
+
+    <head>
+        <title>Super Simple JS Game Ha!</title>
+        <style>
+            button:hover
+            {
+                background-color: #2b9AAd;
+                color: white;
+            }
+
+            canvas
+            {
+                border: 2px solid #666666;
+            }
+        </style>
+    </head>
+
+        <body>
+            <center>
+                <h1>Blocky Bird!</h1>
+                <button onclick="drawPlayer();">Start Game!</button>
+
+                <canvas id="grid" width="480" height="480">
+                </canvas>
+            </center>
+
+        <script>
+            alert("Hello World. This Is my Game. bruh");
+            
+            // Setting Up Game Graphic Objects
+            var c = document.getElementById("grid");
+            var ctx = c.getContext('2d');
+        </script>
+        </body>
 </html>
