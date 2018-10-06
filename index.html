@@ -21,7 +21,7 @@
                 <h1>Blocky Bird!</h1>
                 <button id="start" onclick="startGame();">Start Game!</button>
 
-                <canvas id="grid" width="480" height="480">
+                <canvas id="grid" tabindex='1' width="480" height="480">
                 </canvas>
             </center>
 
@@ -51,24 +51,26 @@
 
         function keyHandler(e)
         {
+            ctx.clearRect(player.x,player.y,player.size, player.size);
             var code = e.keyCode;
-
             // Check Space Key
             if(code == 32)
             {
                 // Player Jumps!
-                player.y=Math.min(0,player.y-20);
-            } // Left Arrow Key
-            else if(code == 37)
+                player.y=Math.max(0,player.y-20);
+            } // 'a' key
+            else if(code == 97)
             {
-                player.x=Math.min(0,player.x-5);
-            }
-            else if(code == 39)
+                player.x=Math.max(0,player.x-5);
+            } // 'd' key
+            else if(code == 100)
             {
                 player.x=Math.min(100,player.x+5);
             }
             drawPlayer();
         }
+
+        function 
         </script>
         </body>
 </html>
