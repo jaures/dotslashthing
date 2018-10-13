@@ -32,9 +32,58 @@
             var player = {"x":0, "y":0, 
                 "size":10, "v":0};
 
+            var obstacles = [];
+
+            c.style.display = "none";
             window.addEventListener('keypress',keyHandler);
             // Maes it so the Game Map is Invisible
-           c.style.display = "none";
+        setInterval(update, 10);        
+        setInterval(spawnPipe, 5000);
+        //Update The Game Frame
+        function update()
+        {
+            ctx.clearRect(0,0,c.width, c.height);
+            gravity();
+            drawPlayer();
+            drawPipes();
+
+        }
+
+        function drawPipes()
+        {
+            for(i = 0; i < obstacles.length; i++)
+            {
+                obstacles[i].x -= 1;
+                ctx.fillRect(obstacles[i].x, 0, 20, c.height);
+                ctx.clearRect( obstacles[i].x,  
+                    obstacles[i].hole, 
+                    20, player.size * 10);
+
+                if( (player.x > obstacles[i].x && 
+                    player.x < obstacles[i].x + 20)
+                    && 
+                    !(player.y < obstacles[i].y || 
+                    player.y > obstacles[i].y + player.size*10)
+                )
+                {
+                    alert("You lived");
+                    break;
+                }
+            }
+        }
+
+        function gravity()
+        {
+            player.v += 0.0098;
+            player.y = Math.min(c.height - 10, Math.max(0, player.y + player.v));
+        }
+
+        function spawnPipe()
+        {
+            obstacles.push({"hole": Math.floor(
+                Math.random() * 0.7 * c.height + 0.2*c.height)
+                , "x": c.width})
+        }
 
         function startGame()
         {
@@ -57,7 +106,7 @@
             if(code == 32)
             {
                 // Player Jumps!
-                player.y=Math.max(0,player.y-20);
+                player.v = -1;
             } // 'a' key
             else if(code == 97)
             {
@@ -70,7 +119,6 @@
             drawPlayer();
         }
 
-        function 
         </script>
         </body>
 </html>
